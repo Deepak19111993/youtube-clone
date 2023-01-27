@@ -4,6 +4,9 @@ import { Context } from '../../Context/ContextApi';
 import Loader from '../../Shared/Loader/Loader';
 import logo from '../../assets/images/yt-logo.png';
 import logoMobile from '../../assets/images/yt-logo-mobile.png';
+import { CgClose } from 'react-icons/cg';
+import { SlMenu } from 'react-icons/sl';
+import { GrSearch } from 'react-icons/gr';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,12 +37,11 @@ const Header = () => {
             className='flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/0.6'
             onClick={mobileMenuToggle}
           >
-            Menu Icon
-            {/* {mobileMenu ? (
+            {mobileMenu ? (
               <CgClose className='text-white text-xl' />
             ) : (
               <SlMenu className='text-white text-xl' />
-            )} */}
+            )}
           </div>
         )}
         {mobileMenu ? (
@@ -54,9 +56,9 @@ const Header = () => {
       </div>
       <div className='group flex items-center'>
         <div className='flex h-8 md:h-10 md:pl-5 border border-[#303030] rounded-l-3xl group-focus-within:border-blue-500 md:group-focus-within:ml-5 md:group-focus-within::pl-0'>
-          <div className='w-10 items-center justify-center hidden xl:flex group-focus-within:md:flex'>
-            {/* <IoIoSearch className='text-white text-xl' /> */}
-          </div>
+          {/* <div className='w-10 items-center justify-center hidden xl:flex group-focus-within:md:flex'>
+            <GrSearch className='text-white text-xl' />
+          </div> */}
           <input
             type='text'
             className='bg-transparent outline-none text-white pr-5 pl-5 md:pl-0 w-44 md:group-focus-within:pl-0 md:w-64 lg:w-[500px]'
@@ -65,8 +67,8 @@ const Header = () => {
             value={searchQuery}
           />
         </div>
-        <button className='w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]'>
-          search
+        <button className='w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1] text-white'>
+          <GrSearch className='text-white text-xl stroke-white' />
         </button>
       </div>
       <div className='flex items-center '>

@@ -4,6 +4,7 @@ import Feed from './Components/Feed/Feed';
 import Header from './Components/Header/Header';
 import SearchResult from './Components/SearchResult/SearchResult';
 import VideoDetail from './Components/VideoDetail/VideoDetail';
+import Signal from './Container/Signal/Signal';
 import { AppContext } from './Context/ContextApi';
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Feed />} />
             <Route
-              exact
               path='/searchresult/:searchQuery'
               element={<SearchResult />}
             />
-            <Route exact path='/video/:id' element={<VideoDetail />} />
+            <Route path='/video/:id' element={<VideoDetail />} />
+            <Route path='/signal' element={<Signal />} />
           </Routes>
         </div>
       </BrowserRouter>

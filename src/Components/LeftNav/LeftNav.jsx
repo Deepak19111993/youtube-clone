@@ -29,17 +29,17 @@ const LeftNav = () => {
         {categories.map((item) => (
           <>
             <LeftNavMenuItem
-              text={item.type === 'home' ? 'Home' : item.name}
-              // icon={item.icon}
+              text={item?.type === 'home' ? 'Home' : item?.name}
+              icon={item?.icon}
               action={() => {
-                clickHandler(item.name, item.type);
+                clickHandler(item?.name, item?.type);
                 navigate('/');
               }}
               className={`${
-                selectCategories === item.name ? 'bg-white/[0.15]' : ''
+                selectCategories === item?.name ? 'bg-white/[0.15]' : ''
               }`}
             />
-            {item.divider && <hr className='my-5 border-white/[0.2]' />}
+            {item?.divider && <hr className='my-5 border-white/[0.2]' />}
           </>
         ))}
         <hr className='my-5 border-white/[0.2]' />

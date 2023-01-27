@@ -51,7 +51,6 @@ code {
   background-color: #fdba2c;
 }
 .bar {
-  content: '';
   display: inline;
   position: absolute;
   width: 0;
