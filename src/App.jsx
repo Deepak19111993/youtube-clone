@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Feed from './Components/Feed/Feed';
 import Header from './Components/Header/Header';
 import SearchResult from './Components/SearchResult/SearchResult';
+import Traffic from './Components/Traffic/Traffic';
 import VideoDetail from './Components/VideoDetail/VideoDetail';
 import Signal from './Container/Signal/Signal';
 import { AppContext } from './Context/ContextApi';
@@ -21,6 +22,7 @@ function App() {
             />
             <Route path='/video/:id' element={<VideoDetail />} />
             <Route path='/signal' element={<Signal />} />
+            <Route path='/traffic' element={<Traffic />} />
           </Routes>
         </div>
       </BrowserRouter>
