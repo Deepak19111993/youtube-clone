@@ -17,7 +17,64 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
+/* round css */
+.round-wrapper {
+  display: flex;
+  position: fixed;
+  top: 150px;
+}
+.round-wrapper .round {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #b4e1b5;
+  border-radius: 50%;
+  z-index: 1;
+  transition: 0.8s all;
+}
+.round-wrapper .round::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 0;
+  top: 0;
+  background: #b4e1b5;
+  border-radius: 50%;
+  z-index: 1;
+}
+.round-wrapper .round .line {
+  position: absolute;
+  background: #ccc;
+  height: 2px;
+  transform-origin: left;
+}
+.round-wrapper .round#round1 {
+  left: 100px;
+  top: 0;
+}
+.round-wrapper .round#round2 {
+  left: 600px;
+  top: 100px;
+}
+.round-wrapper .round#round3 {
+  left: 300px;
+  top: 300px;
+}
+.round-wrapper .round#round4 {
+  left: 800px;
+  top: 600px;
+}
+.round-wrapper .round#round5 {
+  left: 1000px;
+  top: 200px;
+}
+.round-wrapper .round#round6 {
+  left: 800px;
+  top: 100px;
+}
+
+/* @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -30,7 +87,7 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
+} */
 
 .card {
   padding: 2em;
