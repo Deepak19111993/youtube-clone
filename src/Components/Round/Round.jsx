@@ -5,23 +5,7 @@ const Round = () => {
   const [distWidth, setDistWidth] = useState([]);
   const [domelements, setDomElements] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
-  // const [distLeft, setDistLeft] = useState();
-  // const [distTop, setDistTop] = useState();
-  // const [randomLeft, setRandomLeft] = useState();
-  // const [randomTop, setRandomTop] = useState();
-
-  // const randomMove = () => {
-  //   let minLeft = Math.floor(distLeft - 10);
-  //   let maxLeft = Math.floor(distLeft + 10);
-  //   let minTop = Math.floor(distTop - 10);
-  //   let maxTop = Math.floor(distTop + 10);
-
-  //   console.log('random', Math.random());
-  //   console.log('distLeft', distLeft);
-
-  //   setRandomLeft(Math.floor(Math.random() * 50));
-  //   setRandomTop(Math.floor(Math.random() * 50));
-  // };
+  const [rotateValue, setRotateValue] = useState(0);
 
   const boxRef = useRef();
   const getElements = () => {
@@ -42,30 +26,59 @@ const Round = () => {
     return { elements, coordinatesArr };
   };
 
+  const getWidth = (newCoordinates) => {
+    let widthArr = [];
+    newCoordinates.forEach((coordinate, index) => {
+      if (newCoordinates.length - 2 === index) {
+        const x = newCoordinates[index + 1]?.x - coordinate.x;
+        const y = newCoordinates[index + 1]?.y - coordinate.y;
+        widthArr.push(Math.floor(Math.sqrt(x * x + y * y)));
+      }
+    });
+    return widthArr;
+  };
+
   useEffect(() => {
-    const { elements, coordinatesArr } = getElements();
+    const { coordinatesArr, elements } = getElements();
     setDomElements(elements);
     setCoordinates(coordinatesArr);
+    setDistWidth(getWidth(coordinatesArr));
+  }, [coordinates, domelements, distWidth]);
 
-    // randomMove();
+  useEffect(() => {
+    setTimeout(() => {
+      const x = Math.floor(Math.random() * 100);
+      setRotateValue(x);
+    }, 200);
 
-    gsap.to('.round', {
-      x: '+=15',
-      y: '+=15',
-      z: '+=15',
-      duration: 3,
-      // yoyo: true,
-      repeat: -1,
-      repeatDelay: 0.5,
-      stagger: 0.1,
-      // snap: true,
+    const tl = gsap.timeline({ repeat: -1 });
+
+    tl.to('.round-wrapper', {
+      x: 'random([0, 2, 3], true)',
+      y: 'random([0, 2, 3], true)',
+      z: 'random([0, 2, 3], true)',
+      duration: 10,
+      ease: 'elastic',
+      // repeat: -1,
+    });
+
+    tl.to('.round', {
+      x: 'random(0,50,8)',
+      y: 'random(0,50,8)',
+      z: 'random(0,50,8)',
+      // repeat: -1,
+      duration: 10,
+      stagger: 0.5,
+      ease: 'elastic',
     });
 
     // gsap.to('.line', {
-    //   rotate: distWidth - distTop,
-    //   duration: 3,
+    //   duration: 0.5,
+    //   ease: 'elastic',
     // });
-  }, []);
+  }, [rotateValue]);
+
+  // console.log('rotateValue', rotateValue);
 
   useEffect(() => {
     const lengthEle = document.getElementsByClassName('round').length;
@@ -76,12 +89,10 @@ const Round = () => {
       const distnace = Math.sqrt(x * x + y * y);
       distances.push(Math.floor(distnace));
     }
-
     setDistWidth(distances);
-  }, [domelements]);
+  }, [domelements, rotateValue]);
 
-  console.log('sssssssssssss', coordinates, distWidth);
-  console.log('domelements', domelements);
+  console.log('@@@coordinates', distWidth);
   return (
     <div className='round-wrapper'>
       <div id='round1' className='round' ref={boxRef}>
